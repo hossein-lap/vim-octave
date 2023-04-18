@@ -20,7 +20,7 @@ as a plugin.
 ## Usage
 
 ```
-:colorscheme sunbather
+:colorscheme octave
 ```
 
 Supports both `background=light` and `background=dark`.
