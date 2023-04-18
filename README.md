@@ -1,6 +1,6 @@
 # Octave
 
-A minimal colorscheme for Vim.
+A minimal orange colorscheme for Vim.
 
 ## Screenshots
 
