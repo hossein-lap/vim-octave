@@ -6,7 +6,7 @@ A minimal orange colorscheme for Vim.
 
 *Fira Code* font on dark background:
 
-![](screenshots/shot-230418_033800.png)
+![](screenshots/shot.png)
 
 ## Installation
 
