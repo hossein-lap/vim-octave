@@ -12,20 +12,20 @@
 hi clear
 
 if exists('syntax on')
-	  syntax reset
+	syntax reset
 endif
 
 " Toggle bold, italics, underline {{{
 let g:fontfaces = 0
 
 if g:fontfaces == 1
-	  let s:thebold = 'bold'
-	  let s:theitalic = 'italic'
-	  let s:theurl = 'underline'
+	let s:thebold = 'bold'
+	let s:theitalic = 'italic'
+	let s:theurl = 'underline'
 else
-	  let s:thebold = 'none'
-	  let s:theitalic = 'none'
-	  let s:theurl = 'none'
+	let s:thebold = 'none'
+	let s:theitalic = 'none'
+	let s:theurl = 'none'
 endif
 " }}}
 
@@ -61,7 +61,8 @@ let s:darker_blue     = { "gui": "#0000aa", "cterm": "18"   }
 let s:dark_blue       = { "gui": "#0022cc", "cterm": "12"   }
 let s:actual_blue     = { "gui": "#0055ff", "cterm": "12"   }
 let s:light_blue      = { "gui": "#0077ff", "cterm": "153"  }
-let s:dark_cyan       = { "gui": "#00aaff", "cterm": "6"    }
+let s:dark_cyan       = { "gui": "#20A5BA", "cterm": "6"    }
+let s:medium_cyan     = { "gui": "#00aaff", "cterm": "6"    }
 let s:light_cyan      = { "gui": "#00ddff", "cterm": "14"   }
 let s:dark_green      = { "gui": "#009900", "cterm": "34"   }
 let s:actual_green    = { "gui": "#33cc33", "cterm": "76"   }
@@ -107,20 +108,25 @@ else
 endif
 
 let s:active = s:orange
-let s:dark_active = s:dark_orange
-let s:light_active = s:light_orange
-let s:visual = s:active
+if &background == "dark"
+	let s:dark_active = s:dark_orange
+	let s:light_active = s:light_orange
+else
+	let s:dark_active = s:light_orange
+	let s:light_active = s:dark_orange
+endif
+let s:visual = s:dark_active
 
 " https://github.com/noahfrederick/vim-hemisu/
 function! s:h(group, style)
 	execute "highlight" a:group
-	  \ "guifg="   (has_key(a:style, "fg")    ? a:style.fg.gui   : "NONE")
-	  \ "guibg="   (has_key(a:style, "bg")    ? a:style.bg.gui   : "NONE")
-	  \ "guisp="   (has_key(a:style, "sp")    ? a:style.sp.gui   : "NONE")
-	  \ "gui="     (has_key(a:style, "gui")   ? a:style.gui      : "NONE")
-	  \ "ctermfg=" (has_key(a:style, "fg")    ? a:style.fg.cterm : "NONE")
-	  \ "ctermbg=" (has_key(a:style, "bg")    ? a:style.bg.cterm : "NONE")
-	  \ "cterm="   (has_key(a:style, "cterm") ? a:style.cterm    : "NONE")
+		\ "guifg="   (has_key(a:style, "fg")    ? a:style.fg.gui   : "NONE")
+		\ "guibg="   (has_key(a:style, "bg")    ? a:style.bg.gui   : "NONE")
+		\ "guisp="   (has_key(a:style, "sp")    ? a:style.sp.gui   : "NONE")
+		\ "gui="     (has_key(a:style, "gui")   ? a:style.gui      : "NONE")
+		\ "ctermfg=" (has_key(a:style, "fg")    ? a:style.fg.cterm : "NONE")
+		\ "ctermbg=" (has_key(a:style, "bg")    ? a:style.bg.cterm : "NONE")
+		\ "cterm="   (has_key(a:style, "cterm") ? a:style.cterm    : "NONE")
 endfunction
 
 call s:h("Normal",        {"bg": s:bg, "fg": s:norm})
@@ -181,7 +187,7 @@ call s:h("Directory",     {"fg": s:dark_active})
 call s:h("Error",         {"fg": s:actual_white, "bg": s:dark_red, "cterm": s:thebold})
 call s:h("ErrorMsg",      {"fg": s:darker_red})
 call s:h("IncSearch",     {"bg": s:yellow, "fg": s:light_black})
-call s:h("Search",        {"bg": s:light_green, "fg": s:light_black})
+call s:h("Search",        {"bg": s:light_active, "fg": s:light_black})
 call s:h("MoreMsg",       {"fg": s:medium_gray, "cterm": s:thebold, "gui": s:thebold})
 hi! link ModeMsg MoreMsg
 call s:h("LineNr",        {"fg": s:bg_subtle})
